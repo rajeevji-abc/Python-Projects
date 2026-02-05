@@ -1,0 +1,70 @@
+# Simple Contact Book
+# No libraries, No file handling
+
+contacts = []   # each contact = [name, phone]
+
+def add_contact():
+    name = input("Enter name: ")
+    phone = input("Enter phone number: ")
+    contacts.append([name, phone])
+    print("Contact added!")
+
+def view_contacts():
+    if len(contacts) == 0:
+        print("No contacts found.")
+        return
+
+    print("\nContacts:")
+    for i in range(len(contacts)):
+        print(i + 1, "-", contacts[i][0], ":", contacts[i][1])
+
+def search_contact():
+    name = input("Enter name to search: ")
+    found = False
+
+    for c in contacts:
+        if c[0].lower() == name.lower():
+            print("Found:", c[0], "-", c[1])
+            found = True
+
+    if not found:
+        print("Contact not found.")
+
+def delete_contact():
+    view_contacts()
+    if len(contacts) == 0:
+        return
+
+    num = int(input("Enter contact number to delete: "))
+    if 1 <= num <= len(contacts):
+        contacts.pop(num - 1)
+        print("Contact deleted!")
+    else:
+        print("Invalid number")
+
+
+# ---------- Program Starts ----------
+
+while True:
+    print("\n--- CONTACT BOOK ---")
+    print("1. Add Contact")
+    print("2. View Contacts")
+    print("3. Search Contact")
+    print("4. Delete Contact")
+    print("5. Exit")
+
+    choice = input("Choice: ")
+
+    if choice == "1":
+        add_contact()
+    elif choice == "2":
+        view_contacts()
+    elif choice == "3":
+        search_contact()
+    elif choice == "4":
+        delete_contact()
+    elif choice == "5":
+        print("Bye!")
+        break
+    else:
+        print("Invalid choice")
